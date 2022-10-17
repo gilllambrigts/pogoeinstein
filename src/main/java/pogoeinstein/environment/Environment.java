@@ -1,4 +1,4 @@
-package pogoeinstein.settings.environment;
+package pogoeinstein.environment;
 
 public class Environment {
     public static final String TYPE_URI = "src/main/resources/data/types.json";

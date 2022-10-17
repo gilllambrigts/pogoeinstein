@@ -1,29 +1,72 @@
 package pogoeinstein.pokemon;
 
-import pogoeinstein.pokedex.PokedexPokemon;
+import pogoeinstein.gender.Gender;
+import pogoeinstein.pokedex.Pokedex;
+import pogoeinstein.settings.environment.Settings;
+import pogoeinstein.species.Species;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
-public class Pokemon {
+public class Pokemon{
 
-    private PokedexPokemon pokedexPokemon;
-    private String externalId;
-    UUID uuid;
+    private String uuid;
+    private Species species = new Species();
+    private Pokedex pokedex;
+    private Gender gender;
+    private Double height;
+    private Double weight;
 
-    public Pokemon(Integer id){
-        this.pokedexPokemon = new PokedexPokemon(id);
-        this.externalId =  uuid.randomUUID().toString();
+    public Pokemon(Species parSpecies, Double height, Double weight){
+        setUuid(UUID.randomUUID().toString());
+        setSpecies(parSpecies);
+        setHeight(height);
+        setWeight(weight);
+    }
+
+    private void setSpecies(Species species){
+        this.species = species;
+    }
+
+    private void setGender(){
+        //Gender
+        Settings.getGenderMap().get(1);
     }
 
     public Integer getId() {
-        return pokedexPokemon.getId();
+        return species.getId();
     }
 
-    public void setId(Integer id) {
-        this.pokedexPokemon.setId(id);
+    public String getName(){
+        return species.getName();
     }
 
-    public String getExternalId() {
-        return externalId;
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }

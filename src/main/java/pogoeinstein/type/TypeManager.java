@@ -1,15 +1,10 @@
 package pogoeinstein.type;
 
-import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import pogoeinstein.dataParser.DataParser;
 
-import pogoeinstein.dataParser.DataParser;
-import pogoeinstein.settings.environment.Environment;
+import pogoeinstein.environment.Environment;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class TypeManager {

@@ -1,21 +1,17 @@
-package pokemon;
+package pokedex;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pogoeinstein.pokedex.Pokedex;
 import pogoeinstein.pokedex.PokedexManager;
-import pogoeinstein.pokemon.Pokemon;
 
-public class TestPokemon {
+public class TestDoesPokedexLoadJSONResources {
 
     @Test
-    public void createPokemon(){
+    public void generatePokeDex(){
         Pokedex pokedex = new Pokedex();
         PokedexManager pdManager = new PokedexManager();
         pdManager.parsePokeDexFromResources(pokedex);
-        Pokemon Charmeleon = new Pokemon(pokedex.getSpeciesForId(5), 2.02,2.3);
-
-        System.out.println(Charmeleon);
-        Assertions.assertEquals(Charmeleon.getName(), "Charmeleon");
+        Assertions.assertEquals(pokedex.getAllSpecies().toArray().length, 809);
     }
 }
