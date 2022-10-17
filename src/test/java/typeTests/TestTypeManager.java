@@ -1,4 +1,4 @@
-package type;
+package typeTests;
 
 import org.junit.jupiter.api.Test;
 import pogoeinstein.type.TypeManager;

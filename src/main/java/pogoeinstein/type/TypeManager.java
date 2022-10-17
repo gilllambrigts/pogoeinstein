@@ -10,16 +10,18 @@ import java.util.ArrayList;
 public class TypeManager {
 
     DataParser dataParser = new DataParser();
-    private ArrayList<Type> types;
+    private ArrayList<Type> types = new ArrayList<>();
 
     public TypeManager(){
 
     }
 
     public Type getTypeFromArrayList(String typeName){
+
         //Traverse the arraylist. If the name corresponds to the name of the passed typename, return it.
         for(Integer i = 0; i < types.toArray().length; i++){
-            if (types.get(i).getName() == typeName){
+
+            if (types.get(i).getName().equals(typeName)){
                 return types.get(i);
             }
         }
@@ -63,6 +65,9 @@ public class TypeManager {
                 }
 
             }
+
+            types.add(curType);
         }
+
     }
 }

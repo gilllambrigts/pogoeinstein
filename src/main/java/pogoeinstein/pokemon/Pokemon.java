@@ -1,10 +1,12 @@
 package pogoeinstein.pokemon;
 
 import pogoeinstein.gender.Gender;
+import pogoeinstein.move.Move;
 import pogoeinstein.pokedex.Pokedex;
 import pogoeinstein.settings.environment.Settings;
 import pogoeinstein.species.Species;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -17,6 +19,7 @@ public class Pokemon{
     private Gender gender;
     private Double height;
     private Double weight;
+    private ArrayList<Move> moves = new ArrayList<>();
 
     public Pokemon(Species parSpecies, Double height, Double weight){
         setUuid(UUID.randomUUID().toString());
@@ -68,5 +71,17 @@ public class Pokemon{
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public ArrayList<Move> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(ArrayList<Move> moves) {
+        this.moves = moves;
+    }
+
+    public void addMove(Move move) {
+        this.moves.add(move);
     }
 }
