@@ -13,11 +13,7 @@ public class Pokedex {
     }
 
     public Species getSpeciesForId(Integer id){
-        if(id < 0){
-            return species.get(0);
-        }else{
-            return species.get(id - 1);
-        }
+        return species.stream().filter(currentSpecies -> currentSpecies.getId().equals(id)).findFirst().orElse(null);
     }
 
     public ArrayList<Species> getAllSpecies(){

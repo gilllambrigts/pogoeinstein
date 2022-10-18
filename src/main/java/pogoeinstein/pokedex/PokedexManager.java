@@ -30,11 +30,10 @@ public class PokedexManager {
 
             pokemonId = jsonArray.getJSONObject(i).getInt("pokemon_id");
 
-            if(pokemonId == previousPokemonId){
+            if(pokemonId.equals(previousPokemonId)){
             }else{
 
                 Species currentSpecies = new Species();
-                previousPokemonId = pokemonId;
 
                 IVAttack attack = new IVAttack(jsonArray.getJSONObject(i).getInt("base_attack"));
                 IVDefense defense = new IVDefense(jsonArray.getJSONObject(i).getInt("base_defense"));
@@ -46,7 +45,11 @@ public class PokedexManager {
                 currentSpecies.setBaseIVStamina(stamina);
 
                 pd.addSpecies(currentSpecies);
+                System.out.println("Added pokemon - " + currentSpecies.getName().toString());
+                System.out.println("\t" + currentSpecies.getId());
             }
+
+            previousPokemonId = pokemonId;
         }
 
         //Set up the type per pokemon
@@ -58,16 +61,23 @@ public class PokedexManager {
 
             //The list contains multiple occurrences of one the same pokemon. Because of this, we are storing a temporary pokemon id to see if it is still the same one.
             pokemonId = jsonArray.getJSONObject(i).getInt("pokemon_id");
-            if(pokemonId == previousPokemonId){
+            if(previousPokemonId.equals(jsonArrayPokemonTypes.getJSONObject(i).getInt("pokemon_id"))){
             }else{
-                previousPokemonId = pokemonId;
                 JSONArray pokemonTypeObject= jsonArrayPokemonTypes.getJSONObject(i).getJSONArray("type");
-
+                System.out.println("Adding types for " + pd.getSpeciesForId(pokemonId).getName());
+                System.out.println("\tid: " + jsonArray.getJSONObject(i).getInt("pokemon_id"));
+                System.out.println("\ttypes:");
                 for(Integer j = 0; j < pokemonTypeObject.length(); j++){
-                    pd.getSpeciesForId(pokemonId).addType(typeManager.getTypeFromArrayList(pokemonTypeObject.getString(j)));
+                    //Check if the type has already been added. Only add if the pokemon does not have it.
+                    if(!pd.getSpeciesForId(pokemonId).getTypes().contains(typeManager.getTypeFromArrayList(pokemonTypeObject.getString(j)))){
+                        pd.getSpeciesForId(pokemonId).addType(typeManager.getTypeFromArrayList(pokemonTypeObject.getString(j)));
+                        System.out.println("\t\t" + typeManager.getTypeFromArrayList(pokemonTypeObject.getString(j)).getName());
+                    }else{
+                    }
                 }
 
             }
+            previousPokemonId = pokemonId;
         }
 
     }

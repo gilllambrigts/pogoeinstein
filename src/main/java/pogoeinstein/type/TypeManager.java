@@ -1,11 +1,13 @@
 package pogoeinstein.type;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import pogoeinstein.dataParser.DataParser;
 
 import pogoeinstein.environment.Environment;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TypeManager {
 
@@ -14,6 +16,10 @@ public class TypeManager {
 
     public TypeManager(){
 
+    }
+
+    public ArrayList<Type> getAllTypes(){
+        return types;
     }
 
     public Type getTypeFromArrayList(String typeName){
@@ -28,15 +34,27 @@ public class TypeManager {
         return null;
     }
 
+    public void setupTypeEffectiveness(Type type){
+        JSONArray jsonTypeEffectiveness = dataParser.parseDataFromJSON(Environment.TYPE_effectiveness_URI);
+        JSONObject effectivenessJSONObject = jsonTypeEffectiveness.getJSONObject(0).getJSONObject(type.getName());
+        System.out.println("Effectiveness of " + type.getName() + " against:");
+        Iterator<String> keys = effectivenessJSONObject.keys();
+        keys.forEachRemaining(key -> {
+            System.out.println("\t" + key + ": " +  effectivenessJSONObject.getDouble(key));
+            type.addToEffectivenessMap(key, effectivenessJSONObject.getDouble(key));
+        });
+//
+    }
+
     //Go through the JSON file that contains all the types. Create a new type per type. After that, fill its weaknesses, strengths and immunes with newly created types as well.
     public void parseTypesFromResources(){
-        JSONArray jsonArray = dataParser.parseDataFromJSON(Environment.TYPE_URI);
+        JSONArray jsonTypesArray = dataParser.parseDataFromJSON(Environment.TYPE_URI);
 
-        for (Integer i = 0; i < jsonArray.length(); i++) {
-            Type curType = new Type(jsonArray.getJSONObject(i).getString("name"));
+        for (Integer i = 0; i < jsonTypesArray.length(); i++) {
+            Type curType = new Type(jsonTypesArray.getJSONObject(i).getString("name"));
 
             //Set the weaknesses
-            JSONArray weaknessArray = jsonArray.getJSONObject(i).getJSONArray("weaknesses");
+            JSONArray weaknessArray = jsonTypesArray.getJSONObject(i).getJSONArray("weaknesses");
             if(weaknessArray.length() > 0){
 
                 for(Integer j = 0; j < weaknessArray.length(); j++ ){
@@ -46,7 +64,7 @@ public class TypeManager {
             }
 
             //Set the immunes
-            JSONArray immunesArray = jsonArray.getJSONObject(i).getJSONArray("immunes");
+            JSONArray immunesArray = jsonTypesArray.getJSONObject(i).getJSONArray("immunes");
             if(immunesArray.length() > 0){
 
                 for(Integer j = 0; j < immunesArray.length(); j++ ){
@@ -56,7 +74,7 @@ public class TypeManager {
             }
 
             //Set the strengths
-            JSONArray strengthArray = jsonArray.getJSONObject(i).getJSONArray("strengths");
+            JSONArray strengthArray = jsonTypesArray.getJSONObject(i).getJSONArray("strengths");
             if(strengthArray.length() > 0){
 
                 for(Integer k = 0; k < strengthArray.length(); k++ ){
@@ -66,6 +84,8 @@ public class TypeManager {
 
             }
 
+            //Set up the effectiveness
+            setupTypeEffectiveness(curType);
             types.add(curType);
         }
 

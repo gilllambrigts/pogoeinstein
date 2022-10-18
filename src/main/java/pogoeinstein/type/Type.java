@@ -1,7 +1,9 @@
 package pogoeinstein.type;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Type {
 
@@ -10,6 +12,7 @@ public class Type {
     private List<Type> weaknesses = new ArrayList<Type>();
     private List<Type> immunes = new ArrayList<Type>();
     private List<Type> strengths = new ArrayList<Type>();
+    private Map<String, Double> effectivenessMap = new HashMap<>();
 
     public Type(String typeName){
         setName(typeName);
@@ -45,5 +48,21 @@ public class Type {
 
     public void addStrength(Type type) {
         this.strengths.add(type);
+    }
+
+    public Map<String, Double> getEffectivenessMap() {
+        return effectivenessMap;
+    }
+
+    public Double getEffectivenessAgainstType(String typeName){
+        return effectivenessMap.get(typeName);
+    }
+
+    public void setEffectivenessMap(Map<String, Double> effectivenessMap) {
+        this.effectivenessMap = effectivenessMap;
+    }
+
+    public void addToEffectivenessMap(String key, Double value){
+        this.effectivenessMap.put(key, value);
     }
 }

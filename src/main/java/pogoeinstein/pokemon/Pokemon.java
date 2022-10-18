@@ -10,10 +10,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Pokemon{
-
     private String uuid;
     private Species species = new Species();
-    private Pokedex pokedex;
     private Gender gender;
     private Double height;
     private Double weight;
