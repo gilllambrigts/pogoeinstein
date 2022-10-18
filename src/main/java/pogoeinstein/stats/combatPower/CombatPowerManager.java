@@ -2,6 +2,7 @@ package pogoeinstein.stats.combatPower;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import pogoeinstein.calculators.CPCalculator;
 import pogoeinstein.dataParser.DataParser;
 import pogoeinstein.environment.Environment;
 import pogoeinstein.stats.IV.Defense;
@@ -29,14 +30,10 @@ public class CombatPowerManager {
     }
 
     public CombatPower calculateCombatPower(Double level, int defenseTotal, int attackTotal, int staminaTotal){
-        BigDecimal multiplier = getMultiplierForLevel(level);
-        BigDecimal multiplierForFormula = multiplier.multiply(multiplier);
-        Double cp1 = (attackTotal) * Math.pow(defenseTotal, 0.5) * Math.pow(staminaTotal, 0.5);
-        BigDecimal result = multiplierForFormula.multiply(BigDecimal.valueOf(cp1));
-        result = result.divide(BigDecimal.valueOf(10));
-        int resultFloor = (int) Math.floor(result.doubleValue());
 
-        return new CombatPower(resultFloor, multiplier);
+        CPCalculator cpCalc = new CPCalculator();
+        BigDecimal multiplier = getMultiplierForLevel(level);
+        return new CombatPower(cpCalc.calculateCPAndFloor(multiplier,defenseTotal, attackTotal, staminaTotal), multiplier);
     }
 
 }
