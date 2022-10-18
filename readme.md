@@ -6,7 +6,6 @@ Planned to feature:
 Compare different matchups of pokemon.
 Show Meta combinations.
 
-
 Usage:
 Instantiating a pokemon:
         

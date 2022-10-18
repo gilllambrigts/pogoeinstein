@@ -12,6 +12,6 @@ public class TestDoesPokedexLoadJSONResources {
         Pokedex pokedex = new Pokedex();
         PokedexManager pdManager = new PokedexManager();
         pdManager.parsePokeDexFromResources(pokedex);
-        Assertions.assertEquals(pokedex.getAllSpecies().toArray().length, 809);
+        Assertions.assertEquals(pokedex.getAllSpecies().toArray().length, 1059);
     }
 }

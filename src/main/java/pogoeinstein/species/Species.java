@@ -1,6 +1,9 @@
 package pogoeinstein.species;
 
 import pogoeinstein.stats.IV.*;
+import pogoeinstein.type.Type;
+
+import java.util.ArrayList;
 
 public class Species {
     private Integer generationID;
@@ -11,9 +14,11 @@ public class Species {
     private IVSpeed baseIVSpeed;
     private IVDefense baseIVDefense;
     private IVHP baseIVHealth;
+    private IVStamina baseIVStamina;
     private IVAttack baseIVAttack;
     private IVSpecialAttack baseIVSpAttack;
     private IVSpecialDefense baseIVSpDefense;
+    private ArrayList<Type> types = new ArrayList<>();
 
 
     public Integer getId() {
@@ -78,5 +83,25 @@ public class Species {
 
     public void setBaseIVSpeed(IVSpeed baseIVSpeed) {
         this.baseIVSpeed = baseIVSpeed;
+    }
+
+    public IVStamina getBaseIVStamina() {
+        return baseIVStamina;
+    }
+
+    public void setBaseIVStamina(IVStamina baseIVStamina) {
+        this.baseIVStamina = baseIVStamina;
+    }
+
+    public ArrayList<Type> getTypes() {
+        return types;
+    }
+
+    public void setTypes(ArrayList<Type> types) {
+        this.types = types;
+    }
+
+    public void addType(Type type) {
+        this.types.add(type);
     }
 }

@@ -23,31 +23,54 @@ public class PokedexManager {
         this.pd = pd;
 
         JSONArray jsonArray = dataParser.parseDataFromJSON(Environment.POKEDEX_URI);
+        Integer pokemonId = 0;
+        Integer previousPokemonId = 0;
 
         for (Integer i = 0; i < jsonArray.length(); i++) {
 
-            Species currentSpecies = new Species();
+            pokemonId = jsonArray.getJSONObject(i).getInt("pokemon_id");
 
-            //Read values
-            IVAttack attack = new IVAttack(jsonArray.getJSONObject(i).getJSONObject("base").getInt("Attack"));
-            IVDefense defense = new IVDefense(jsonArray.getJSONObject(i).getJSONObject("base").getInt("Defense"));
-            IVSpeed speed = new IVSpeed(jsonArray.getJSONObject(i).getJSONObject("base").getInt("Speed"));
-            IVHP HP = new IVHP(jsonArray.getJSONObject(i).getJSONObject("base").getInt("HP"));
-            IVSpecialAttack spAttack = new IVSpecialAttack(jsonArray.getJSONObject(i).getJSONObject("base").getInt("Sp. Attack"));
-            IVSpecialDefense spDefense = new IVSpecialDefense(jsonArray.getJSONObject(i).getJSONObject("base").getInt("Sp. Defense"));
+            if(pokemonId == previousPokemonId){
+            }else{
 
-            //Set the properties
-            currentSpecies.setId(jsonArray.getJSONObject(i).getInt("id"));
-            currentSpecies.setName(jsonArray.getJSONObject(i).getJSONObject("name").getString("english"));
-            currentSpecies.setBaseIVAttack(attack);
-            currentSpecies.setBaseIVHealth(HP);
-            currentSpecies.setBaseIVSpAttack(spAttack);
-            currentSpecies.setBaseIVSpDefense(spDefense);
-            currentSpecies.setBaseIVDefense(defense);
-            currentSpecies.setBaseIVSpeed(speed);
+                Species currentSpecies = new Species();
+                previousPokemonId = pokemonId;
 
-            pd.addSpecies(currentSpecies);
+                IVAttack attack = new IVAttack(jsonArray.getJSONObject(i).getInt("base_attack"));
+                IVDefense defense = new IVDefense(jsonArray.getJSONObject(i).getInt("base_defense"));
+                IVStamina stamina = new IVStamina(jsonArray.getJSONObject(i).getInt("base_stamina"));
+                currentSpecies.setId(jsonArray.getJSONObject(i).getInt("pokemon_id"));
+                currentSpecies.setName(jsonArray.getJSONObject(i).getString("pokemon_name"));
+                currentSpecies.setBaseIVAttack(attack);
+                currentSpecies.setBaseIVDefense(defense);
+                currentSpecies.setBaseIVStamina(stamina);
+
+                pd.addSpecies(currentSpecies);
+                System.out.println(currentSpecies.getName());
+            }
+
         }
+
+        //Set up the type per pokemon
+        JSONArray jsonArrayPokemonTypes = dataParser.parseDataFromJSON(Environment.POKEMON_TYPE_URI);
+
+        pokemonId = 0;
+        previousPokemonId = 0;
+        for (Integer i = 0; i < jsonArrayPokemonTypes.length(); i++){
+
+            pokemonId = jsonArray.getJSONObject(i).getInt("pokemon_id");
+            if(pokemonId == previousPokemonId){
+            }else{
+                previousPokemonId = pokemonId;
+                JSONArray pokemonTypeObject= jsonArrayPokemonTypes.getJSONObject(i).getJSONArray("type");
+
+                for(Integer j = 0; j < pokemonTypeObject.length(); j++){
+                    pd.getSpeciesForId(pokemonId).addType(typeManager.getTypeFromArrayList(pokemonTypeObject.getString(j)));
+                }
+
+            }
+        }
+
     }
 
 }

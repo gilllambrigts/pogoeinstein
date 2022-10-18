@@ -7,8 +7,6 @@ import pogoeinstein.settings.environment.Settings;
 import pogoeinstein.species.Species;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class Pokemon{
