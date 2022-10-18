@@ -18,7 +18,6 @@ public class TestDoesMoveExist {
         pdm.parsePokeDexFromResources(pd);
 
         mm.parseMovesFromJsonFile();
-        System.out.println(mm.getMoveWithId(2).getName());
 
         Move move1 = mm.getMoveWithId(5);
         Move move2 = mm.getMoveWithId(20);
@@ -27,6 +26,7 @@ public class TestDoesMoveExist {
         bulbasaur.addMove(move1);
         bulbasaur.addMove(move2);
 
+        System.out.println(mm.getMoveWithId(2).getName());
         Assertions.assertEquals(mm.getMoveWithId(2).getName(), "Double Slap");
     }
 }
