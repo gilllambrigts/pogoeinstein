@@ -8,8 +8,5 @@ public class TestTypeManager {
     public void TestTypeManager(){
         TypeManager typeManager = new TypeManager();
         typeManager.parseTypesFromResources();
-
-
-
     }
 }

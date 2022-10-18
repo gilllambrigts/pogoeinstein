@@ -46,9 +46,7 @@ public class PokedexManager {
                 currentSpecies.setBaseIVStamina(stamina);
 
                 pd.addSpecies(currentSpecies);
-                System.out.println(currentSpecies.getName());
             }
-
         }
 
         //Set up the type per pokemon
@@ -58,6 +56,7 @@ public class PokedexManager {
         previousPokemonId = 0;
         for (Integer i = 0; i < jsonArrayPokemonTypes.length(); i++){
 
+            //The list contains multiple occurrences of one the same pokemon. Because of this, we are storing a temporary pokemon id to see if it is still the same one.
             pokemonId = jsonArray.getJSONObject(i).getInt("pokemon_id");
             if(pokemonId == previousPokemonId){
             }else{
