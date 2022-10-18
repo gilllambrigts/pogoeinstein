@@ -16,7 +16,7 @@ public class TestGenerateRandomPokemon {
         PokedexManager pdManager = new PokedexManager();
         pdManager.parsePokeDexFromResources(pd);
         Integer rnd = new Random().nextInt(809);
-        Pokemon rndPokemon = new Pokemon(pd.getSpeciesForId(rnd), 2.0, 2.0);
+        Pokemon rndPokemon = new Pokemon(pd.getSpeciesForId(rnd), 2.0, 2.0,5.0,2,2,2);
 
         System.out.println(rndPokemon.getName());
         Assertions.assertNotNull(rndPokemon.getName());

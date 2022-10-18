@@ -35,9 +35,9 @@ public class PokedexManager {
 
                 Species currentSpecies = new Species();
 
-                IVAttack attack = new IVAttack(jsonArray.getJSONObject(i).getInt("base_attack"));
-                IVDefense defense = new IVDefense(jsonArray.getJSONObject(i).getInt("base_defense"));
-                IVStamina stamina = new IVStamina(jsonArray.getJSONObject(i).getInt("base_stamina"));
+                Attack attack = new Attack(jsonArray.getJSONObject(i).getInt("base_attack"));
+                Defense defense = new Defense(jsonArray.getJSONObject(i).getInt("base_defense"));
+                Stamina stamina = new Stamina(jsonArray.getJSONObject(i).getInt("base_stamina"));
                 currentSpecies.setId(jsonArray.getJSONObject(i).getInt("pokemon_id"));
                 currentSpecies.setName(jsonArray.getJSONObject(i).getString("pokemon_name"));
                 currentSpecies.setBaseIVAttack(attack);

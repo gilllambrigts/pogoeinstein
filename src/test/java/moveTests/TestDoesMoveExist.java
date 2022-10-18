@@ -22,7 +22,7 @@ public class TestDoesMoveExist {
         Move move1 = mm.getMoveWithId(5);
         Move move2 = mm.getMoveWithId(20);
 
-        Pokemon bulbasaur = new Pokemon(pd.getSpeciesForId(1),1.0,1.0);
+        Pokemon bulbasaur = new Pokemon(pd.getSpeciesForId(1),1.0,1.0, 2.0,2,2,2);
         bulbasaur.addMove(move1);
         bulbasaur.addMove(move2);
 

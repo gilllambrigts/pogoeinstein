@@ -13,7 +13,7 @@ public class TestPokemon {
         Pokedex pokedex = new Pokedex();
         PokedexManager pdManager = new PokedexManager();
         pdManager.parsePokeDexFromResources(pokedex);
-        Pokemon Charmeleon = new Pokemon(pokedex.getSpeciesForId(5), 2.02,2.3);
+        Pokemon Charmeleon = new Pokemon(pokedex.getSpeciesForId(5), 2.02,2.3,3.0,3,3,3);
 
         System.out.println(Charmeleon);
         Assertions.assertEquals(Charmeleon.getName(), "Charmeleon");

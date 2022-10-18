@@ -12,10 +12,10 @@ public class Species {
 
     //IV's
     private IVSpeed baseIVSpeed;
-    private IVDefense baseIVDefense;
-    private IVHP baseIVHealth;
-    private IVStamina baseIVStamina;
-    private IVAttack baseIVAttack;
+    private Defense baseDefense;
+    private HP baseIVHealth;
+    private Stamina baseStamina;
+    private Attack baseAttack;
     private IVSpecialAttack baseIVSpAttack;
     private IVSpecialDefense baseIVSpDefense;
     private ArrayList<Type> types = new ArrayList<>();
@@ -53,28 +53,28 @@ public class Species {
         this.baseIVSpAttack = baseIVSpAttack;
     }
 
-    public IVAttack getBaseIVAttack() {
-        return baseIVAttack;
+    public Attack getBaseIVAttack() {
+        return baseAttack;
     }
 
-    public void setBaseIVAttack(IVAttack baseIVAttack) {
-        this.baseIVAttack = baseIVAttack;
+    public void setBaseIVAttack(Attack baseAttack) {
+        this.baseAttack = baseAttack;
     }
 
-    public IVHP getBaseIVHealth() {
+    public HP getBaseIVHealth() {
         return baseIVHealth;
     }
 
-    public void setBaseIVHealth(IVHP baseIVHealth) {
+    public void setBaseIVHealth(HP baseIVHealth) {
         this.baseIVHealth = baseIVHealth;
     }
 
-    public IVDefense getBaseIVDefense() {
-        return baseIVDefense;
+    public Defense getBaseIVDefense() {
+        return baseDefense;
     }
 
-    public void setBaseIVDefense(IVDefense baseIVDefense) {
-        this.baseIVDefense = baseIVDefense;
+    public void setBaseIVDefense(Defense baseDefense) {
+        this.baseDefense = baseDefense;
     }
 
     public IVSpeed getBaseIVSpeed() {
@@ -85,12 +85,12 @@ public class Species {
         this.baseIVSpeed = baseIVSpeed;
     }
 
-    public IVStamina getBaseIVStamina() {
-        return baseIVStamina;
+    public Stamina getBaseIVStamina() {
+        return baseStamina;
     }
 
-    public void setBaseIVStamina(IVStamina baseIVStamina) {
-        this.baseIVStamina = baseIVStamina;
+    public void setBaseIVStamina(Stamina baseStamina) {
+        this.baseStamina = baseStamina;
     }
 
     public ArrayList<Type> getTypes() {
