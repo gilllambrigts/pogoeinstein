@@ -14,8 +14,6 @@ import java.util.Random;
 import java.util.Set;
 
 public class TestCombatPowerManager {
-
-
     CombatPowerManager cp;
 
     @BeforeEach
@@ -51,12 +49,10 @@ public class TestCombatPowerManager {
                         }else if(result > 1490){
                             System.out.println("Level: " + iterator + " - " + " Defense: " + j + " Attack: " + k + " Stamina: " + l + " \t " + result);
                         }else{
-
                         }
                     }
                 }
             }
         }
-
     }
 }
